@@ -1,0 +1,125 @@
+<mujoco model="flamingo_v1_3">
+    <compiler angle="radian" />
+    <option timestep="0.005" gravity="0 0 -9.807" iterations="50" solver="Newton" jacobian="dense" integrator="implicitfast"/>
+    <visual>
+        <headlight diffuse="1 1 1" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <global azimuth="120" elevation="-20"/>
+    </visual>
+
+    <default>
+        <default class="visual">
+            <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+        </default>
+
+        <default class="collision">
+            <geom group="3"/>
+        </default>
+
+        <default class="collision_mesh">
+            <geom contype="1" conaffinity="1" group="0"/>
+        </default>
+
+        <default class='joints'>
+            <joint damping="1.0" stiffness="0.0" frictionloss="0.1" armature="0.01" actuatorfrclimited="true" actuatorfrcrange="-1000 1000"/>
+        </default>
+        <default class='wheels'>
+            <joint damping="0.0" stiffness="0.0" frictionloss="0.1" armature="0.01" actuatorfrclimited="true" actuatorfrcrange="-1000 1000"/>
+        </default>
+    </default>
+    <worldbody>
+        <geom name="ground" pos="0 0 0" type="hfield" hfield="flat" material="MatPlane" friction="0.8 0.02 0.01" condim="3"/>
+        <body name="base_link" pos="0.0 0.0 0.40189">
+            <inertial pos="0.00388849 -0.00120792 0.09609136" mass="3.09537000" diaginertia="0.01845599 0.00950350 0.01448607" />
+            <geom size="0.03 0.12 0.1" pos="0.02 0 0.085" type="box" rgba="0.2 0.2 0.2 1" class="collision"/>
+            <geom type="mesh" mesh="base_link" rgba="0.2 0.2 0.2 1" class="visual"/>
+            <site name="base_link_site" pos="0 0 0" size="0.01" rgba="0.2 0.2 0.2 1" />
+            <joint name="base_free_joint" type="free" damping="0.0" />
+            <site name='imu' size='0.01' pos='0.0 0 0.0'/>
+            <body name="left_hip_link" pos="-0.023025 0.08 0.034" quat="0.499998 0.5 -0.500002 -0.5">
+            <inertial pos="0.00036204 2.381e-05 0.00882329" quat="0.999988 -0.000339422 -0.00495027 -3.70699e-05" mass="0.853498" diaginertia="0.00119573 0.00089778 0.000736125"/>
+            <joint name="left_hip_joint" pos="0 0 0" axis="0 0 1" range="-0.6 0.6" class="joints"/>
+            <geom type="mesh" rgba="0.1 0.1 0.1 1" mesh="left_hip_link"/>
+            <body name="left_shoulder_link" pos="-0.0265 0 0.06" quat="0.707105 0 -0.707108 0">
+                <inertial pos="0.0800386 -0.0833582 0.0700051" quat="0.731923 0.580477 0.311944 0.173282" mass="1.10752" diaginertia="0.00634132 0.00630575 0.0011511"/>
+                <joint name="left_shoulder_joint" pos="0 0 0" axis="0 0 1" range="-1.0754 1.0754" class="joints"/>
+                <geom type="mesh" rgba="0.1 0.1 0.1 1" mesh="left_shoulder_link"/>
+                <body name="left_leg_link" pos="0.13801 -0.17132 0.07705">
+                <inertial pos="-0.124627 -0.103051 0.013806" quat="0.201591 0.374782 0.648522 0.631125" mass="0.866" diaginertia="0.00492237 0.0048977 0.000776591"/>
+                <joint name="left_leg_joint" pos="0 0 0" axis="0 0 1" range="-1.0754 1.0754" class="joints"/>
+                <geom type="mesh" rgba="0.1 0.1 0.1 1" mesh="left_leg_link"/>
+                <body name="left_wheel_link" pos="-0.16406 -0.14657 0.09555">
+                    <inertial pos="7.511e-05 -5.338e-05 0.00027824" quat="0.567843 0.421372 -0.567843 0.421372" mass="0.92" diaginertia="0.0058183 0.00307621 0.00307618"/>
+                    <joint name="left_wheel_joint" pos="0 0 0" axis="0 0 1" type="hinge" limited="false" class="wheels"/>
+                    <geom size="0.118 0.01875" pos="0 0 0.01875" friction="0.8 0.02 0.01" type="cylinder" rgba="0.05 0.05 0.05 1"/>
+                </body>
+                </body>
+            </body>
+            </body>
+            <body name="right_hip_link" pos="-0.023025 -0.08 0.034" quat="0.499998 0.5 -0.500002 -0.5">
+            <inertial pos="-0.00036122 3.743e-05 0.00883157" quat="0.999988 0.000154647 0.00493917 -1.59264e-06" mass="0.853498" diaginertia="0.00119577 0.0008978 0.000736155"/>
+            <joint name="right_hip_joint" pos="0 0 0" axis="0 0 1" range="-0.6 0.6" class="joints"/>
+            <geom type="mesh" rgba="0.1 0.1 0.1 1" mesh="right_hip_link"/>
+            <body name="right_shoulder_link" pos="0.0265 0 0.06" quat="0.707105 0 0.707108 0">
+                <inertial pos="-0.0816542 -0.0833788 0.0706227" quat="0.731879 0.580554 -0.311802 -0.173463" mass="1.10752" diaginertia="0.00634124 0.00630574 0.00115114"/>
+                <joint name="right_shoulder_joint" pos="0 0 0" axis="0 0 -1" range="-1.0754 1.0754" class="joints"/>
+                <geom type="mesh" rgba="0.1 0.1 0.1 1" mesh="right_shoulder_link"/>
+                <body name="right_leg_link" pos="-0.13801 -0.17132 0.07705">
+                <inertial pos="0.12455 -0.103137 0.0156808" quat="0.642959 0.633995 0.192362 0.384253" mass="0.866" diaginertia="0.00492545 0.00489901 0.00077576"/>
+                <joint name="right_leg_joint" pos="0 0 0" axis="0 0 -1" range="-1.0754 1.0754" class="joints"/>
+                <geom type="mesh" rgba="0.1 0.1 0.1 1" mesh="right_leg_link"/>
+                <body name="right_wheel_link" pos="0.16406 -0.14657 0.09555">
+                    <inertial pos="-9.141e-05 1.163e-05 0.00027824" quat="0.421372 0.567843 -0.421372 0.567843" mass="0.92" diaginertia="0.0058183 0.00307621 0.00307618"/>
+                    <joint name="right_wheel_joint" pos="0 0 0" axis="0 0 -1" type="hinge" limited="false" class="wheels"/>
+                    <geom size="0.118 0.01875" pos="0 0 0.01875" friction="0.8 0.02 0.01" type="cylinder" rgba="0.05 0.05 0.05 1"/>
+                </body>
+                </body>
+            </body>
+            </body>
+        </body>
+    </worldbody>
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+        <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+        <material name="MatPlane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+        <material name="rubber" rgba="0.4 0.4 0.4 1" shininess="0.5" reflectance="0.2"/>
+        <mesh name="base_link" file="../mesh/base_link.STL"/>
+        <mesh name="left_hip_link" file="../mesh/left_hip_link.STL" />
+        <mesh name="left_shoulder_link" file="../mesh/left_shoulder_link.STL" />
+        <mesh name="left_leg_link" file="../mesh/left_leg_link.STL" />
+        <mesh name="left_wheel_link" file="../mesh/left_wheel_link.STL" />
+        <mesh name="right_hip_link" file="../mesh/right_hip_link.STL" />
+        <mesh name="right_shoulder_link" file="../mesh/right_shoulder_link.STL" />
+        <mesh name="right_leg_link" file="../mesh/right_leg_link.STL" />
+        <mesh name="right_wheel_link" file="../mesh/right_wheel_link.STL" />
+
+        <hfield name="flat" file="../terrain/flat.png" nrow="64" ncol="64" size="140 140 10 0.1"/>
+        <hfield name="rocky_easy" file="../terrain/rocky_easy.png" nrow="512" ncol="512" size="140 140 0.1 0.1"/>
+        <hfield name="rocky_hard" file="../terrain/rocky_hard.png" nrow="512" ncol="512" size="140 140 0.25 0.1"/>
+        <hfield name="slope_easy" file="../terrain/slope_easy.png" nrow="512" ncol="512" size="140 140 0.5 0.1"/>
+        <hfield name="slope_hard" file="../terrain/slope_hard.png" nrow="512" ncol="512" size="140 140 1 0.1"/>
+        <hfield name="stairs_easy" file="../terrain/stairs_easy.png" nrow="128" ncol="8192" size="140 140 0.32 0.1"/>
+        <hfield name="stairs_hard" file="../terrain/stairs_hard.png" nrow="128" ncol="8192" size="140 140 0.64 0.1"/>
+    </asset>
+
+    <actuator>
+        <motor joint="left_hip_joint" name="left_hip_joint" ctrllimited="true" ctrlrange="-1000 1000"  gear="1" />
+        <motor joint="right_hip_joint" name="right_hip_joint" ctrllimited="true" ctrlrange="-1000 1000"  gear="1"/>
+        <motor joint="left_shoulder_joint" name="left_shoulder_joint" ctrllimited="true" ctrlrange="-1000 1000"  gear="1"/>
+        <motor joint="right_shoulder_joint" name="right_shoulder_joint" ctrllimited="true" ctrlrange="-1000 1000"  gear="1"/>
+        <motor joint="left_leg_joint" name="left_leg_joint" ctrllimited="true" ctrlrange="-1000 1000"  gear="1"/>
+        <motor joint="right_leg_joint" name="right_leg_joint" ctrllimited="true" ctrlrange="-1000 1000"  gear="1"/>
+        <motor joint="left_wheel_joint" name="left_wheel_joint" ctrllimited="true" ctrlrange="-1000 1000" gear="1"/>
+        <motor joint="right_wheel_joint" name="right_wheel_joint"  ctrllimited="true" ctrlrange="-1000 1000" gear="1"/>
+    </actuator>
+
+    <sensor>
+        <framequat name="orientation" objtype="site" objname="imu"/>
+        <framepos name="position" objtype="site" objname="imu"/>
+        <gyro name="angular-velocity" site="imu" cutoff="34.9"/>
+        <velocimeter name="linear-velocity" site="imu" cutoff="30"/>
+        <accelerometer name="linear-acceleration" site="imu" cutoff="157"/>
+        <magnetometer name="magnetometer" site="imu"/>
+    </sensor>
+
+</mujoco>
