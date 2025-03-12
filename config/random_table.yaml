@@ -1,0 +1,150 @@
+random_table:
+  precision:
+    low:
+      timestep: 0.010
+      iterations: 50
+      frame_skip: 2
+    medium:
+      timestep: 0.005
+      iterations: 50
+      frame_skip: 4
+    high:
+      timestep: 0.0025
+      iterations: 75
+      frame_skip: 8
+    ultra:
+      timestep: 0.00125
+      iterations: 75
+      frame_skip: 16
+    extreme:
+      timestep: 0.000625
+      iterations: 100
+      frame_skip: 32
+
+  sensor_noise:
+    none:
+      q:
+        mean: 0.0
+        std: 0.0000001
+        lower: -0.00000001
+        upper: 0.00000001
+      qd:
+        mean: 0.0
+        std: 0.0000001
+        lower: -0.00000001
+        upper: 0.00000001
+      omega:
+        mean: 0.0
+        std: 0.0000001
+        lower: -0.00000001
+        upper: 0.00000001
+      euler:
+        mean: 0.0
+        std: 0.0000001
+        lower: -0.00000001
+        upper: 0.00000001
+    low:
+      q:
+        mean: 0.0
+        std: 0.005
+        lower: -0.01
+        upper: 0.01
+      qd:
+        mean: 0.0
+        std: 0.033
+        lower: -0.066
+        upper: 0.066
+      omega:
+        mean: 0.0
+        std: 0.002
+        lower: -0.004
+        upper: 0.004
+      euler:
+        mean: 0.0
+        std: 0.002
+        lower: -0.004
+        upper: 0.004
+    medium:
+      q:
+        mean: 0.0
+        std: 0.004
+        lower: -0.008
+        upper: 0.008
+      qd:
+        mean: 0.0
+        std: 0.09
+        lower: -0.18
+        upper: 0.18
+      omega:
+        mean: 0.0
+        std: 0.005
+        lower: -0.010
+        upper: 0.010
+      euler:
+        mean: 0.0
+        std: 0.005
+        lower: -0.010
+        upper: 0.010
+    high:
+      q:
+        mean: 0.0
+        std: 0.005
+        lower: -0.010
+        upper: 0.010
+      qd:
+        mean: 0.0
+        std: 0.12
+        lower: -0.24
+        upper: 0.24
+      omega:
+        mean: 0.0
+        std: 0.006
+        lower: -0.012
+        upper: 0.012
+      euler:
+        mean: 0.0
+        std: 0.006
+        lower: -0.012
+        upper: 0.012
+    ultra:
+      q:
+        mean: 0.0
+        std: 0.006
+        lower: -0.012
+        upper: 0.012
+      qd:
+        mean: 0.0
+        std: 0.16
+        lower: -0.32
+        upper: 0.32
+      omega:
+        mean: 0.0
+        std: 0.008
+        lower: -0.016
+        upper: 0.016
+      euler:
+        mean: 0.0
+        std: 0.008
+        lower: -0.016
+        upper: 0.016
+    extreme:
+      q:
+        mean: 0.0
+        std: 0.007
+        lower: -0.014
+        upper: 0.014
+      qd:
+        mean: 0.0
+        std: 0.20
+        lower: -0.40
+        upper: 0.40
+      omega:
+        mean: 0.0
+        std: 0.010
+        lower: -0.020
+        upper: 0.020
+      euler:
+        mean: 0.0
+        std: 0.010
+        lower: -0.020
+        upper: 0.020
